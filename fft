@@ -1,0 +1,43 @@
+#! /usr/bin/octave -qf
+
+poly1 = [];
+poly2 = [];
+
+n = input('Order: ');
+n = n;
+
+k = 1;
+printf("First Polynomial...\n");
+while k <= (n+1)
+	printf("Enter in x^%d coefficient: ",k-1);
+	poly1(k) = input('');
+	k = k+1;
+endwhile
+
+k = 1;
+printf("Second Polynomial...\n");
+while k <= (n+1)
+	printf("Enter in x^%d coefficient: ",k-1);
+	poly2(k) = input('');
+	k = k+1;
+endwhile
+
+n=n+8;
+
+
+z = round(ifft(fft(poly1, n).*fft(poly2, n), n));
+
+k = n;
+while k > 0
+	if(z(k) != 0)
+		if(k == 1)
+			printf ("%d", z(k));
+		else
+			printf ("%dx^%d ", z(k),(k-1));
+		endif
+	endif
+	k = k -1;
+endwhile
+
+printf ("\n");
+
